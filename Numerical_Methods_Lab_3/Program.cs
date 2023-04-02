@@ -163,7 +163,7 @@ internal class Program
         Console.WriteLine("Вузли:");
         PrintAllNodes(chebishovNulls, functionInChebishovNulls);
         Console.WriteLine("_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________");
-        Console.WriteLine("Поліном Лагранжа:");
+        Console.WriteLine("Поліном Лагранжа(L(x)):");
         Polynomial lagrangePolynomial = GetLagrangePolynomial(chebishovNulls, functionInChebishovNulls, nodes);
         ShowPolynomial(lagrangePolynomial);
         Console.WriteLine("_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________");
@@ -175,8 +175,12 @@ internal class Program
         var newtonPolynomial = GetNewtonPolynomial(chebishovNulls, dividedDifferences, nodes);
         ShowPolynomial(newtonPolynomial);
         Console.WriteLine("_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________");
-
-
+        Console.WriteLine("Невідоме буду шукати оберненою інтерполяцію за поліномом Лагранжа:");
+        Console.WriteLine("Поліном Лагранжа(L(y)):");
+        Polynomial lagrangePolynomialY = GetLagrangePolynomial(functionInChebishovNulls, chebishovNulls,  nodes);
+        ShowPolynomial(lagrangePolynomialY);
+        Console.WriteLine("Рівняння L(0) = x");
+        Console.WriteLine($"x = {lagrangePolynomialY.polynomialMembers.Where(pm => pm.Grade == 0).Select(pm => pm.Сoefficient).FirstOrDefault()}");
     }
 
 }
