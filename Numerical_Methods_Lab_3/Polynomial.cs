@@ -14,12 +14,11 @@ namespace Numerical_Methods_Lab_3
         {
             polynomialMembers= new List<PolynomialMember>();
         }
-
         public Polynomial(List<PolynomialMember> polynomial)
         {
             this.polynomialMembers = polynomial;
         }
-        public void AddPolynomialMember(double coefficient, int degree)
+        public void AddPolynomialMember(double coefficient, double degree)
         {
             polynomialMembers.Add(new PolynomialMember(coefficient, degree));
         }
