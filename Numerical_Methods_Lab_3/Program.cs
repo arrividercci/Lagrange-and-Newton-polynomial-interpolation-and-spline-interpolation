@@ -69,10 +69,10 @@ internal class Program
     private static void ShowPolynomial(Polynomial polynomial)
     {
         Console.Write("F(x)=");
-        Console.Write($"{polynomial.polynomialMembers[0].Сoefficient}x^{polynomial.polynomialMembers[0].Grade}+");
+        Console.Write($" {polynomial.polynomialMembers[0].Сoefficient.ToString("F15")}*x^{polynomial.polynomialMembers[0].Grade}");
         for (int i = 1; i < polynomial.polynomialMembers.Count; i++)
         {
-            Console.Write($"+{polynomial.polynomialMembers[i].Сoefficient}x^{polynomial.polynomialMembers[i].Grade}");
+            Console.Write($" + {polynomial.polynomialMembers[i].Сoefficient.ToString("F15")}*x^{polynomial.polynomialMembers[i].Grade}");
         }
         Console.WriteLine();
     }
