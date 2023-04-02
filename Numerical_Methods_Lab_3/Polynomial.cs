@@ -54,9 +54,14 @@ namespace Numerical_Methods_Lab_3
             }
         }
 
-        public void SortByDegree()
+        public void SortByDegreeDescending()
         {
             this.polynomialMembers = this.polynomialMembers.OrderByDescending(x => x.Grade).ToList();
+        }
+
+        public void SortByDegree()
+        {
+            this.polynomialMembers = this.polynomialMembers.OrderBy(x => x.Grade).ToList();
         }
 
     }

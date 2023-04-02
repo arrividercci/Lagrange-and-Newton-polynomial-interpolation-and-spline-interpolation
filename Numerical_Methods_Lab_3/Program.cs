@@ -7,7 +7,6 @@ using System.Xml;
 
 internal class Program
 {
-    
     //функція
     private static double Function(double x)
     {
@@ -70,7 +69,7 @@ internal class Program
             resPolynomial.Add(polynomial);
         }
         resPolynomial.RefactorAllPolynomialMembers(nodes);
-        resPolynomial.SortByDegree();
+        resPolynomial.SortByDegreeDescending();
         return resPolynomial;
     }
     
@@ -148,7 +147,7 @@ internal class Program
             resultPol.Add(polynomial);
         }
         resultPol.RefactorAllPolynomialMembers(nodes);
-        resultPol.SortByDegree();
+        resultPol.SortByDegreeDescending();
         return resultPol;
     }
 
@@ -355,35 +354,13 @@ internal class Program
     public static void ShowPolynomial(Polynomial polynomial, string varLetter)
     {
         int i = 0;
-        polynomial.SortByDegree();
-        for(int k = 0; k < polynomial.polynomialMembers.Count; k++)
+        polynomial.SortByDegreeDescending();
+        var item = polynomial.polynomialMembers[0];
+        if (item.Сoefficient != 0) Console.Write($"+{item.Сoefficient:f6}*({varLetter}^{item.Grade})");
+        for (int k = 1; k < polynomial.polynomialMembers.Count; k++)
         {
-            var item = polynomial.polynomialMembers[k];
-            if (k != 0 && item.Сoefficient > 0)
-            {
-                if (item.Grade != 0)
-                {
-                    Console.Write($"+{item.Сoefficient:f6}*({varLetter}^{item.Grade})");
-                }
-                else
-                {
-                    Console.Write($"+{item.Сoefficient:f6}");
-                }
-
-            }
-            else
-            {
-                if (item.Grade != 0)
-                {
-                    Console.Write($"{item.Сoefficient:f6}*({varLetter}^{item.Grade})");
-                }
-                else
-                {
-                    Console.Write($"{item.Сoefficient:f6}");
-                }
-
-            }
-            k++;
+            item = polynomial.polynomialMembers[k];
+            if (item.Сoefficient != 0) Console.Write($"+{item.Сoefficient:f6}*({varLetter}^{item.Grade})");
         }
     }
 
@@ -395,7 +372,7 @@ internal class Program
             int j = i;
             ShowPolynomial(s, "x");
             Console.Write(",    ");
-            Console.Write($"[{nodes[i - j]:f4}; {nodes[i - j + 1]:f4}]");
+            Console.Write($"[{nodes[i]:f4}; {nodes[i + 1]:f4}]");
             Console.WriteLine();
             i++;
         }
@@ -462,6 +439,7 @@ internal class Program
             Polynomial s = GetSplinePart(chebishovNulls.ToArray(), functionInChebishovNulls.ToArray(), m, hi, i - 1, i, nodes);
             spline.Add(s);
         }
+        Console.WriteLine();
         Console.WriteLine("Сплайн: ");
         ShowSpline(spline, chebishovNulls.ToArray());
     }
