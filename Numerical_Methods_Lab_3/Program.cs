@@ -142,7 +142,8 @@ internal class Program
             }
             foreach(var pm in polynomial.polynomialMembers)
             {
-                pm.MultiplyCof(dividedDiffirences[i - 1][0]);
+                var size = dividedDiffirences[i - 1].Count();
+                pm.MultiplyCof(dividedDiffirences[i - 1][size - 1]);
             }
             resultPol.Add(polynomial);
         }
@@ -408,7 +409,7 @@ internal class Program
         Polynomial lagrangePolynomialY = GetLagrangePolynomial(functionInChebishovNulls, chebishovNulls,  nodes);
         ShowPolynomial(lagrangePolynomialY);
         Console.WriteLine("Рівняння L(0) = x");
-        Console.WriteLine($"x = {lagrangePolynomialY.polynomialMembers.Where(pm => pm.Grade == 0).Select(pm => pm.Сoefficient).FirstOrDefault()}");
+        Console.WriteLine($"x = {lagrangePolynomialY.polynomialMembers.Where(pm => pm.Grade == 0 || pm.Grade % 2 == 0).Select(pm => pm.Сoefficient).Sum()}");
         Console.WriteLine("_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________");
         Console.WriteLine("Природній кубічний інтерполяційний сплайн:");
         var hi = FindHi(chebishovNulls.OrderBy(x => x).ToList());
